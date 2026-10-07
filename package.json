@@ -23,7 +23,9 @@
   },
   "homepage": "https://github.com/S00269936/WebProg2Assignment#readme",
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "mongoose": "^9.11.0",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
