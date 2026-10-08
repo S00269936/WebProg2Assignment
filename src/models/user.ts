@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { z } from 'zod';
+import { email, z } from 'zod';
 
 export interface IUser {
     name: string;
@@ -14,3 +14,12 @@ const userSchema = new Schema<IUser>({
     password: {type:String, required: true},
     role: {type: String, enum: ['customer', 'staff'], default: 'customer'}
 })
+
+export const createUserZSchema = z.object({
+    name: z.string().min(1),
+    email: z.email(),
+    password: z.string().min(6),
+    role: z.enum(['customer', 'staff']).optional()
+});
+
+export const UserModel = model<IUser>('User', userSchema);
