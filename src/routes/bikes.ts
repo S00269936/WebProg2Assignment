@@ -4,20 +4,20 @@ import { BikeController } from '../controllers/bikes';
 import {validate} from '../middleware/validate.middleware';
 import {createBikeZSchema}  from '../models/bike';
 
-export const bikeRoutes = Router();  
+const router = Router();  
 
 const bikeController = new BikeController(); 
 
-bikeRoutes.get('/', bikeController.getBikes); 
+router.get('/', bikeController.getBikes); 
 
-bikeRoutes.get('/:id', bikeController.getBikeById); 
+router.get('/:id', bikeController.getBikeById); 
 
-bikeRoutes.post('/', validate(createBikeZSchema), bikeController.createBike);
+router.post('/', validate(createBikeZSchema), bikeController.createBike);
 
-bikeRoutes.put('/:id', bikeController.updateBike); 
+router.put('/:id', bikeController.updateBike); 
 
-bikeRoutes.delete('/:id', bikeController.deleteBike); 
+router.delete('/:id', bikeController.deleteBike); 
 
  
 
-export default bikeRoutes;
+export default router;

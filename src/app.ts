@@ -1,7 +1,7 @@
 import express, {Application, Request, Response} from "express" ;
 import { env } from "../src/config/env";
 import { logRequest } from "./middleware/log.middleware";
-import { bikeRoutes } from "./routes/bikes";
+import bikeRoutes from "./routes/bikes";
 import { swaggerSpec } from "../src/config/swagger";
 import swaggerUi from "swagger-ui-express";
 import {connectDB} from '../src/config/database';
@@ -25,7 +25,7 @@ app.listen(PORT, () => {
     });
     
     app.use(express.json()); 
- app.use('/api/v1/cars', logRequest, bikeRoutes); //tell app to use the bikeRoutes for any requests that start with /bikes
+ app.use('/api/v1/bikes', logRequest, bikeRoutes); //tell app to use the bikeRoutes for any requests that start with /bikes
 
     app.use(
     '/api-docs',
