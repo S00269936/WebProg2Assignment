@@ -2,8 +2,9 @@ import express, {Application, Request, Response} from "express" ;
 import { env } from "../src/config/env";
 import { logRequest } from "./middleware/log.middleware";
 import { bikeRoutes } from "./routes/bikes";
-import { swaggerSpec } from "./config/swagger";
+import { swaggerSpec } from "../src/config/swagger";
 import swaggerUi from "swagger-ui-express";
+import {connectDB} from '../src/config/database';
 
 const PORT = env.port;
 const app: Application = express();
@@ -32,3 +33,11 @@ app.listen(PORT, () => {
     swaggerUi.setup(swaggerSpec)
     ); // serves swagger documentation at /api-docs
 
+    const startServer = async () => {
+        await connectDB();
+      
+        app.listen(PORT, () => {
+          console.log(`Server running on port ${PORT}`);
+        });
+      };
+      startServer();
