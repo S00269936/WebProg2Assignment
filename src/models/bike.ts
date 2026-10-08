@@ -9,7 +9,7 @@ export interface IBike{
     available: boolean;
     description?: string;
     image?: string;
-    color?: string;
+    colour?: string;
     brand?: string;
 }
 
@@ -21,7 +21,7 @@ const bikeSchema = new Schema<IBike>({
     available: { type: Boolean, default: true },
     description: { type: String },
     image: { type: String}, 
-    color: { type: String },
+    colour: { type: String },
     brand: { type: String },
 },{ timestamps: true });
 
@@ -55,7 +55,7 @@ export const createBikeZSchema = z.object({
     available: z.boolean().optional(),
     description: z.string().optional(),
     image: z.string().optional(),
-    color: z.string().optional(),
+    colour: z.string().optional(),
     brand: z.string().optional(),
   })
 
@@ -67,7 +67,7 @@ export const createBikeZSchema = z.object({
     available: z.boolean().optional(),
     description: z.string().optional(),
     image: z.string().optional(),
-    color: z.string().optional(),
+    colour: z.string().optional(),
     brand: z.string().optional(),
 })
 

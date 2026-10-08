@@ -1,0 +1,59 @@
+@endpoint = http://localhost:5050/api/v1/bikes
+
+ 
+
+###
+# @name postABike
+
+POST {{endpoint}} HTTP/1.1
+content-type: application/json
+x-api-key: blahblah
+
+{ "bikeName": "Trek 5200",
+    "type": "Road",
+    "pricePerHour": 15,
+    "pricePerDay": 100,
+    "available": true,
+    "description": "great for the hills",
+    "colour": "red",
+    "brand": "Trek"
+}
+
+###
+
+@newBike = {{postABike.response.body._id}}
+
+###
+GET  {{endpoint}} HTTP/3.0 
+content-type: application/json
+x-api-key: blahblah 
+
+ 
+
+### 
+
+GET  {{endpoint}}/{{{{newBike}}}} HTTP/3.0 
+content-type: application/json
+x-api-key: blahblah
+### 
+
+ 
+
+DELETE  {{endpoint}}/id HTTP/3.0 
+content-type: application/json
+x-api-key: blahblah
+
+ 
+
+### 
+
+ 
+
+###
+PUT {{endpoint}}/id HTTP/1.1
+Content-Type: application/json
+x-api-key: blahblah
+
+{
+    
+}
