@@ -1,6 +1,7 @@
 import express, {Application, Request, Response} from "express" ;
+import { env } from "../src/config/env";
 
-const PORT = process.env.PORT || 5050;
+const PORT = env.port;
 const app: Application = express();
 
 app.get("/ping", async (_req : Request, res: Response) => {
