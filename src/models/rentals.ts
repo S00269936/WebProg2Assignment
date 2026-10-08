@@ -9,7 +9,7 @@ export interface IRental {
     contactPhone: string;
     startDate: Date;
     endDate: Date;
-    endTime?: string;
+    endTime?: Date;
     totalPrice: number;
     status: boolean;
     customerNotes?: string;
@@ -30,3 +30,18 @@ const rentalSchema = new Schema<IRental>({
     status: {type: Boolean, required: true},
     customerNotes: {type: String, required: false}
 });
+
+export const createRentalZSchema = z.object({
+    bike: z.string().min(1),
+    bikeName: z.string().min(1),
+    customerName: z.string().min(1),
+    contactPhone: z.string().min(1),
+    startDate: z.coerce.date(),
+    endDate: z.coerce.date(),
+    totalPrice: z.number().min(0),
+    status: z.boolean(),
+    customerNotes: z.string().optional()
+});
+
+
+export const RentalModel = model<IRental>('Rental', rentalSchema);
