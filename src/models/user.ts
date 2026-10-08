@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { email, z } from 'zod';
+import { z } from 'zod';
 
 export interface IUser {
     name: string;

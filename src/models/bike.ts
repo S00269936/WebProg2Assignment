@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { string, z } from 'zod';
+import { z } from 'zod';
 
 export interface IBike{
     bikeName: string;

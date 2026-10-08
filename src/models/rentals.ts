@@ -1,5 +1,5 @@
 import { Schema, Types, model } from 'mongoose';
-import { boolean, string, z } from 'zod';
+import { z } from 'zod';
 
 //Rentals: bike, customer name, contact phone, start date, end date (or time), total price, status and customer notes.
 export interface IRental {
