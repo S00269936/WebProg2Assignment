@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { BikeService } from '../services/bikes';
-import { createBikeZSchema, updateBikeZSchema } from '../models/bike';
+import { createBikeZSchema, updateBikeZSchema } from '../models';
 
 const bikeService = new BikeService();
 
@@ -47,7 +47,7 @@ export class BikeController {
     }
   };
 
-  updateCar = async (req: Request, res: Response): Promise<void> => {
+  updateBike = async (req: Request, res: Response): Promise<void> => {
     try {
       const validation = updateBikeZSchema.safeParse(req.body);
       console.log;
@@ -68,7 +68,7 @@ export class BikeController {
     }
   };
 
-  updateBike = async (_req: Request, res: Response): Promise<void> => {
+  deleteBike = async (_req: Request, res: Response): Promise<void> => {
     try {
       const id = Array.isArray(_req.params.id) ? _req.params.id[0] : _req.params.id;
       const deletedBike = await bikeService.deleteBike(id);
