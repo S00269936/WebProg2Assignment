@@ -2,8 +2,8 @@ import express, {Application, Request, Response} from "express" ;
 import { env } from "../src/config/env";
 import { logRequest } from "./middleware/log.middleware";
 import { bikeRoutes } from "./routes/bikes";
-//import { swaggerSpec } from "./config/swagger";
-//import swaggerUi from 'swagger-ui-express';
+import { swaggerSpec } from "./config/swagger";
+import swaggerUi from "swagger-ui-express";
 
 const PORT = env.port;
 const app: Application = express();
