@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { BikeService } from '../services/bikes';
-import { createBikeZSchema, updateBikeZSchema } from '../models';
+import { createBikeZSchema, updateBikeZSchema } from '../models/bike';
 
 const bikeService = new BikeService();
 

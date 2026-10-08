@@ -1,6 +1,6 @@
 import { Router } from 'express'; 
 import { BikeController } from '../controllers/bikes'; 
-import { authenticateKey } from '../middleware/auth.middleware';
+//import { authenticateKey } from '../middleware/auth.middleware';
 import {validate} from '../middleware/validate.middleware';
 import {createBikeZSchema}  from '../models/bike';
 
