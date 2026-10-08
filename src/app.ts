@@ -1,5 +1,9 @@
 import express, {Application, Request, Response} from "express" ;
 import { env } from "../src/config/env";
+import { logRequest } from "./middleware/log.middleware";
+import { bikeRoutes } from "./routes/bikes";
+//import { swaggerSpec } from "./config/swagger";
+//import swaggerUi from 'swagger-ui-express';
 
 const PORT = env.port;
 const app: Application = express();
@@ -19,5 +23,12 @@ app.listen(PORT, () => {
         next();
     });
     
-    
+    app.use(express.json()); 
+ app.use('/api/v1/cars', logRequest, bikeRoutes); //tell app to use the bikeRoutes for any requests that start with /bikes
+
+    app.use(
+    '/api-docs',
+    swaggerUi.serve,
+    swaggerUi.setup(swaggerSpec)
+    ); // serves swagger documentation at /api-docs
 
