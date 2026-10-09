@@ -10,7 +10,15 @@ content-type: application/json
 x-api-key: blahblah
 
 { 
-    
+    "bike": "6ac8c94d4e7343dfb56ac828",
+    "bikeName": "Trek Marlin 7",
+    "customerName": "John Doe, Shmoe",
+    "contactPhone": "1234567890",
+    "startDate": "2026-10-15T09:00:00Z",
+    "endDate": "2026-10-15T17:00:00Z",
+    "totalPrice": 40,
+    "status": true,
+    "customerNotes": "The bike was rusty"
 }
 
 ###
@@ -26,14 +34,14 @@ x-api-key: blahblah
 
 ### 
 
-GET {{endpoint}}/{{{{newRental}}}} HTTP/3.0
+GET {{endpoint}}/{{newRental}} HTTP/3.0
 content-type: application/json
 x-api-key: blahblah
 ### 
 
  
 
-DELETE  {{endpoint}}/id HTTP/3.0 
+DELETE  {{endpoint}}/6ac930c9d2ebe7f6a84e5c68 HTTP/3.0 
 content-type: application/json
 x-api-key: blahblah
 
