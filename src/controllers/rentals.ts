@@ -2,13 +2,13 @@ import { Request, Response } from 'express';
 import { RentalService } from '../services/rentals';
 import { createRentalZSchema, updateRentalZSchema } from '../models/rentals';
 
-const bikeService = new RentalService();
+const rentalService = new RentalService();
 
 export class RentalController {
 
   getRentals = async (_req: Request, res: Response): Promise<void> => {
     try {
-      const rentals = await bikeService.getAllRentals();
+      const rentals = await rentalService.getAllRentals();
       res.status(200).json(rentals);
     } catch (error) {
       res.status(500).json({ message: 'Error fetching rentals', error });
@@ -19,7 +19,7 @@ export class RentalController {
   getRentalById = async (req: Request, res: Response): Promise<void> => {
     try {
       const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
-      const rental = await RentalService.getRentalById(id);
+      const rental = await rentalService.getRentalById(id);
       if (!rental) {
         res.status(404).json({ message: 'Rental not found' });
         return;
@@ -40,7 +40,7 @@ export class RentalController {
         });
         return;
       }
-      const newRental = await RentalService.createRental(req.body);
+      const newRental = await rentalService.createRental(req.body);
       res.status(201).json(newRental);
     } catch (error) {
       res.status(500).json({ message: 'Error inserting into MongoDB', error });
@@ -57,7 +57,7 @@ export class RentalController {
         });
       }
       const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
-      const updatedRental = await RentalService.updateRental(id, req.body);
+      const updatedRental = await rentalService.updateRental(id, req.body);
       if (!updatedRental) {
         res.status(404).json({ message: 'Rental not found' });
         return;
@@ -71,7 +71,7 @@ export class RentalController {
   deleteRental = async (_req: Request, res: Response): Promise<void> => {
     try {
       const id = Array.isArray(_req.params.id) ? _req.params.id[0] : _req.params.id;
-      const deletedRental = await RentalService.deleteRental(id);
+      const deletedRental = await rentalService.deleteRental(id);
       if (!deletedRental) {
         res.status(404).json({ message: 'Rental not found' });
         return;
