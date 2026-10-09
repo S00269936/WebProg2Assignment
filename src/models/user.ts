@@ -4,7 +4,7 @@ import { z } from 'zod';
 export interface IUser {
     name: string;
     email: string;
-    password: string;
+    password: string; //will add hashing
     role: 'customer' | 'staff';
 }
 
