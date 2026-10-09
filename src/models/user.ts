@@ -22,4 +22,11 @@ export const createUserZSchema = z.object({
     role: z.enum(['customer', 'staff']).optional()
 });
 
+export const updateUserZSchema = z.object({
+    name: z.string().min(1).optional(),
+    email: z.email().optional(),
+    password: z.string().min(6).optional(),
+    role: z.enum(['customer', 'staff']).optional()
+});
+
 export const UserModel = model<IUser>('User', userSchema);
