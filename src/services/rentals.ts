@@ -18,11 +18,7 @@ export class RentalService {
     }
 
     async updateRental(id: string, rentalData: Partial<IRental>): Promise<IRental | null> {
-        return await RentalModel.findByIdAndUpdate(
-            id,
-            rentalData,
-            { returnDocument: 'after', runValidators: true }
-        ).lean();
+        return await RentalModel.findByIdAndUpdate(id, rentalData, { returnDocument: 'after', runValidators: true }).lean();
     }
 
     async deleteRental(id: string): Promise<IRental | null> {

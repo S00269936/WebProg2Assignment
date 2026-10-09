@@ -43,5 +43,15 @@ export const createRentalZSchema = z.object({
     customerNotes: z.string().optional()
 });
 
-
+export const updateRentalZSchema = z.object({
+    bike: z.string().min(1).optional(),
+    bikeName: z.string().min(1).optional(),
+    customerName: z.string().min(1).optional(),
+    contactPhone: z.string().min(1).optional(),
+    startDate: z.coerce.date().optional(),
+    endDate: z.coerce.date().optional(),
+    totalPrice: z.number().min(0).optional(),
+    status: z.boolean().optional(),
+    customerNotes: z.string().optional()
+});
 export const RentalModel = model<IRental>('Rental', rentalSchema);
