@@ -1,0 +1,57 @@
+@endpoint = http://localhost:5050/api/v1/users
+
+ 
+
+###
+# @name postAUser
+
+POST {{endpoint}} HTTP/1.1
+content-type: application/json
+x-api-key: blahblah
+
+{ 
+    "name": "John Murphy, delete me",
+    "email": "john.murphy@gmail.com",
+    "password": "Password123"
+}
+
+###
+
+@newUser = {{postAUser.response.body._id}}
+
+###
+GET  {{endpoint}} HTTP/3.0 
+content-type: application/json
+x-api-key: blahblah 
+
+ 
+
+### 
+
+GET {{endpoint}}/{{newUser}} HTTP/3.0
+content-type: application/json
+x-api-key: blahblah
+### 
+
+ 
+
+DELETE  {{endpoint}}/6ac9459f07332568ed6205d1 HTTP/3.0 
+content-type: application/json
+x-api-key: blahblah
+
+ 
+
+### 
+
+ 
+
+###
+PUT {{endpoint}}/6ac9459f07332568ed6205d1 HTTP/1.1
+Content-Type: application/json
+x-api-key: blahblah
+
+{
+    "name": "John Murphy & delete me",
+  "email": "john.murphy@gmail.com",
+  "password": "$2b$12$cQG5brqXFRZ56r9RUxeBiOfAvUleazkCIlbAnS4PyhAuKZsUg5P5W"
+}
