@@ -6,6 +6,7 @@ import { swaggerSpec } from "../src/config/swagger";
 import swaggerUi from "swagger-ui-express";
 import {connectDB} from '../src/config/database';
 import rentalRoutes from './routes/rentals';
+import userRoutes from './routes/users';
 
 const PORT = env.port;
 const app: Application = express();
@@ -28,6 +29,7 @@ app.listen(PORT, () => {
     app.use(express.json()); 
  app.use('/api/v1/bikes', logRequest, bikeRoutes); //tell app to use the bikeRoutes for any requests that start with /bikes
  app.use('/api/v1/rentals', rentalRoutes); //same for rentals
+ app.use('/api/v1/users', userRoutes); //users 
 
     app.use(
     '/api-docs',
