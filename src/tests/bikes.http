@@ -32,7 +32,7 @@ x-api-key: blahblah
 
 ### 
 
-GET  {{endpoint}}/{{{{newBike}}}} HTTP/3.0 
+GET {{endpoint}}/{{newBike}} HTTP/3.0
 content-type: application/json
 x-api-key: blahblah
 ### 

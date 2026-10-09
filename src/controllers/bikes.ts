@@ -11,7 +11,7 @@ export class BikeController {
       const cars = await bikeService.getAllBikes();
       res.status(200).json(cars);
     } catch (error) {
-      res.status(500).json({ message: 'Error fetching cars', error });
+      res.status(500).json({ message: 'Error fetching bikes', error });
     }
   };
   
