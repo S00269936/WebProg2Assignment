@@ -17,9 +17,9 @@ app.get("/ping", async (_req : Request, res: Response) => {
     });
 });
 
-app.listen(PORT, () => {
+/*app.listen(PORT, () => {
     console.log("Server is running on port", PORT);
-    });
+    });*/
 
     app.use((req, _res, next) => {  
         console.log(`${req.method} ${req.originalUrl}`);
@@ -37,11 +37,13 @@ app.listen(PORT, () => {
     swaggerUi.setup(swaggerSpec)
     ); // serves swagger documentation at /api-docs
 
-    const startServer = async () => {
+    /*const startServer = async () => {
         await connectDB();
       
         app.listen(PORT, () => {
           console.log(`Server running on port ${PORT}`);
         });
       };
-      startServer();
+      startServer();*/
+
+      export { app };

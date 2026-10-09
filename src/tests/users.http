@@ -10,8 +10,8 @@ content-type: application/json
 x-api-key: blahblah
 
 { 
-    "name": "John Murphy, delete me",
-    "email": "john.murphy@gmail.com",
+    "name": "Jane Murphy",
+    "email": "jane.murphy@gmail.com",
     "password": "Password123"
 }
 
