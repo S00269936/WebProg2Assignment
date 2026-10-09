@@ -9,14 +9,14 @@ POST {{endpoint}} HTTP/1.1
 content-type: application/json
 x-api-key: blahblah
 
-{ "bikeName": "Trek 5200",
-    "type": "Road",
-    "pricePerHour": 15,
-    "pricePerDay": 100,
+{ "bikeName": "to be deleted",
+    "type": "Mountain",
+    "pricePerHour": 5,
+    "pricePerDay": 20,
     "available": true,
-    "description": "great for the hills",
-    "colour": "red",
-    "brand": "Trek"
+    "description": "great jumping over small hills",
+    "colour": "black",
+    "brand": "green"
 }
 
 ###
@@ -39,7 +39,7 @@ x-api-key: blahblah
 
  
 
-DELETE  {{endpoint}}/id HTTP/3.0 
+DELETE  {{endpoint}}/6ac8cc294e7343dfb56ac829 HTTP/3.0 
 content-type: application/json
 x-api-key: blahblah
 
@@ -50,10 +50,17 @@ x-api-key: blahblah
  
 
 ###
-PUT {{endpoint}}/id HTTP/1.1
+PUT {{endpoint}}/6ac8cc294e7343dfb56ac829 HTTP/1.1
 Content-Type: application/json
 x-api-key: blahblah
 
 {
-    
+    "bikeName": "Trek Marlin 8",
+    "type": "Mountain",
+    "pricePerHour": 5,
+    "pricePerDay": 20,
+    "available": true,
+    "description": "great jumping over small hills",
+    "colour": "black",
+    "brand": "Trek"
 }
