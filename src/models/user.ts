@@ -15,6 +15,28 @@ const userSchema = new Schema<IUser>({
     role: {type: String, enum: ['customer', 'staff'], default: 'customer'}
 })
 
+/**
+ * @openapi
+ * components:
+ *   schemas:
+ *     CreateUserInput:
+ *       type: object
+ *       required:
+ *         - name
+ *         - email
+ *         - password
+ *       properties:
+ *         name:
+ *           type: string
+ *           example: John Murphy
+ *         email:
+ *           type: string
+ *           example: john@example.com
+ *         password:
+ *           type: string
+ *           format: password
+ *           example: Password123
+ */
 export const createUserZSchema = z.object({
     name: z.string().min(1),
     email: z.email(),

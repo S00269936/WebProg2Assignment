@@ -7,6 +7,19 @@ const bikeService = new BikeService();
 export class BikeController {
 
   getBikes = async (_req: Request, res: Response): Promise<void> => {
+     /**
+     * @openapi
+     * /bikes:
+     *   get:
+     *     summary: Retrieve all bikes
+     *     tags:
+     *       - Bikes
+     *     responses:
+     *       200:
+     *         description: Successfully retrieved bikes
+     *       500:
+     *         description: Internal server error
+     */
     try {
       const bikes = await bikeService.getAllBikes();
       res.status(200).json(bikes);
@@ -17,6 +30,28 @@ export class BikeController {
   
 
   getBikeById = async (req: Request, res: Response): Promise<void> => {
+    /**
+     * @openapi
+     * /bikes/{id}:
+     *   get:
+     *     summary: Get a bike by ID
+     *     tags:
+     *       - Bikes
+     *     parameters:
+     *       - in: path
+     *         name: id
+     *         required: true
+     *         description: MongoDB ID of the bike
+     *         schema:
+     *           type: string
+     *     responses:
+     *       200:
+     *         description: Bike found
+     *       404:
+     *         description: Bike not found
+     *       500:
+     *         description: Internal server error
+     */
     try {
       const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
       const bike = await bikeService.getBikeById(id);
@@ -31,6 +66,27 @@ export class BikeController {
   };
 
   createBike = async (req: Request, res: Response): Promise<void> => {
+         /**
+       * @openapi
+       * /bikes:
+       *   post:
+       *     summary: Create a new bike
+       *     tags:
+       *       - Bikes
+       *     requestBody:
+       *       required: true
+       *       content:
+       *         application/json:
+       *           schema:
+       *             $ref: '#/components/schemas/CreateBikeInput'
+       *     responses:
+       *       201:
+       *         description: Successfully created bike
+       *       400:
+       *         description: Bad request
+       *       500:
+       *         description: Internal server error
+       */
     try {
       const validation = createBikeZSchema.safeParse(req.body);
       console.log;
@@ -48,6 +104,35 @@ export class BikeController {
   };
 
   updateBike = async (req: Request, res: Response): Promise<void> => {
+      /**
+   * @openapi
+   * /bikes/{id}:
+   *   put:
+   *     summary: Update an existing bike
+   *     tags:
+   *       - Bikes
+   *     parameters:
+   *       - in: path
+   *         name: id
+   *         required: true
+   *         schema:
+   *           type: string
+   *     requestBody:
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             $ref: '#/components/schemas/CreateBikeInput'
+   *     responses:
+   *       200:
+   *         description: Bike updated successfully
+   *       400:
+   *         description: Invalid bike data
+   *       404:
+   *         description: Bike not found
+   *       500:
+   *         description: Internal server error
+   */
     try {
       const validation = updateBikeZSchema.safeParse(req.body);
       console.log;
@@ -69,6 +154,27 @@ export class BikeController {
   };
 
   deleteBike = async (_req: Request, res: Response): Promise<void> => {
+          /**
+    * @openapi
+    * /bikes/{id}:
+    *   delete:
+    *     summary: Delete a bike by ID
+    *     tags:
+    *       - Bikes
+    *     parameters:
+    *       - in: path
+    *         name: id
+    *         required: true
+    *         schema:
+    *           type: string
+    *     responses:
+    *       200:
+    *         description: Bike found
+    *       404:
+    *         description: Bike not found
+    *       500:
+    *         description: Internal server error
+    */
     try {
       const id = Array.isArray(_req.params.id) ? _req.params.id[0] : _req.params.id;
       const deletedBike = await bikeService.deleteBike(id);

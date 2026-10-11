@@ -26,28 +26,46 @@ const bikeSchema = new Schema<IBike>({
 },{ timestamps: true });
 
 export const createBikeZSchema = z.object({
-    /**
-   * @openapi
-   * components:
-   *   schemas:
-   *     CreateBikeInput:
-   *       type: object
-   *       required:
-   *         - bikeName
-   *         - type
-   *       properties:
-   *         bikeName:
-   *           type: string
-   *           example: Stromer ST2
-   *         type:
-   *           type: string
-   *           example: electric
-   *         price:
-   *           type: integer
-   *           example: 3000
-   */
-  
-  
+/**
+ * @openapi
+ * components:
+ *   schemas:
+ *     CreateBikeInput:
+ *       type: object
+ *       required:
+ *         - bikeName
+ *         - type
+ *       properties:
+ *         bikeName:
+ *           type: string
+ *           example: Stromer ST2
+ *         type:
+ *           type: string
+ *           example: Electric
+ *         pricePerHour:
+ *           type: number
+ *           minimum: 1
+ *           example: 12
+ *         pricePerDay:
+ *           type: number
+ *           minimum: 1
+ *           example: 50
+ *         available:
+ *           type: boolean
+ *           example: true
+ *         description:
+ *           type: string
+ *           example: Electric bike suitable for city travel
+ *         image:
+ *           type: string
+ *           example: image link here
+ *         colour:
+ *           type: string
+ *           example: Black
+ *         brand:
+ *           type: string
+ *           example: Stromer
+ */
     bikeName: z.string().min(1),
     type: z.string().min(1),
     pricePerHour: z.number().min(1).optional(),

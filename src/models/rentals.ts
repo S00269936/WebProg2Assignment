@@ -31,6 +31,52 @@ const rentalSchema = new Schema<IRental>({
     customerNotes: {type: String, required: false}
 });
 
+/**
+ * @openapi
+ * components:
+ *   schemas:
+ *     CreateRentalInput:
+ *       type: object
+ *       required:
+ *         - bike
+ *         - bikeName
+ *         - customerName
+ *         - contactPhone
+ *         - startDate
+ *         - endDate
+ *         - totalPrice
+ *         - status
+ *       properties:
+ *         bike:
+ *           type: string
+ *           example: 507f1f77bcf86cd799439011
+ *         bikeName:
+ *           type: string
+ *           example: Trek Marlin 7
+ *         customerName:
+ *           type: string
+ *           example: John Murphy
+ *         contactPhone:
+ *           type: string
+ *           example: "0871234567"
+ *         startDate:
+ *           type: string
+ *           format: date
+ *           example: "2026-10-15"
+ *         endDate:
+ *           type: string
+ *           format: date
+ *           example: "2026-10-16"
+ *         totalPrice:
+ *           type: number
+ *           example: 25
+ *         status:
+ *           type: boolean
+ *           example: true
+ *         customerNotes:
+ *           type: string
+ *           example: Collect in the morning
+ */
 export const createRentalZSchema = z.object({
     bike: z.string().min(1),
     bikeName: z.string().min(1),

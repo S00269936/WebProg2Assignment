@@ -7,6 +7,19 @@ const rentalService = new RentalService();
 export class RentalController {
 
   getRentals = async (_req: Request, res: Response): Promise<void> => {
+  /**
+   * @openapi
+   * /rentals:
+   *   get:
+   *     summary: Get all rentals
+   *     tags:
+   *       - Rentals
+   *     responses:
+   *       200:
+   *         description: Rentals retrieved successfully
+   *       500:
+   *         description: Internal server error
+   */
     try {
       const rentals = await rentalService.getAllRentals();
       res.status(200).json(rentals);
@@ -17,6 +30,27 @@ export class RentalController {
   
 
   getRentalById = async (req: Request, res: Response): Promise<void> => {
+    /**
+     * @openapi
+     * /rentals/{id}:
+     *   get:
+     *     summary: Get a rental by ID
+     *     tags:
+     *       - Rentals
+     *     parameters:
+     *       - in: path
+     *         name: id
+     *         required: true
+     *         schema:
+     *           type: string
+     *     responses:
+     *       200:
+     *         description: Rental found
+     *       404:
+     *         description: Rental not found
+     *       500:
+     *         description: Internal server error
+     */
     try {
       const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
       const rental = await rentalService.getRentalById(id);
@@ -31,6 +65,27 @@ export class RentalController {
   };
 
   createRental = async (req: Request, res: Response): Promise<void> => {
+    /**
+     * @openapi
+     * /rentals:
+     *   post:
+     *     summary: Create a new rental
+     *     tags:
+     *       - Rentals
+     *     requestBody:
+     *       required: true
+     *       content:
+     *         application/json:
+     *           schema:
+     *             $ref: '#/components/schemas/CreateRentalInput'
+     *     responses:
+     *       201:
+     *         description: Rental created successfully
+     *       400:
+     *         description: Bad request
+     *       500:
+     *         description: Internal server error
+     */
     try {
       const validation = createRentalZSchema.safeParse(req.body);
       console.log;
@@ -48,6 +103,35 @@ export class RentalController {
   };
 
   updateRental = async (req: Request, res: Response): Promise<void> => {
+    /**
+     * @openapi
+     * /rentals/{id}:
+     *   put:
+     *     summary: Update an existing rental
+     *     tags:
+     *       - Rentals
+     *     parameters:
+     *       - in: path
+     *         name: id
+     *         required: true
+     *         schema:
+     *           type: string
+     *     requestBody:
+     *       required: true
+     *       content:
+     *         application/json:
+     *           schema:
+     *             $ref: '#/components/schemas/CreateRentalInput'
+     *     responses:
+     *       200:
+     *         description: Rental updated successfully
+     *       400:
+     *         description: Invalid rental data
+     *       404:
+     *         description: Rental not found
+     *       500:
+     *         description: Internal server error
+     */
     try {
       const validation = updateRentalZSchema.safeParse(req.body);
       console.log;
@@ -69,6 +153,27 @@ export class RentalController {
   };
 
   deleteRental = async (_req: Request, res: Response): Promise<void> => {
+    /**
+     * @openapi
+     * /rentals/{id}:
+     *   delete:
+     *     summary: Delete a rental
+     *     tags:
+     *       - Rentals
+     *     parameters:
+     *       - in: path
+     *         name: id
+     *         required: true
+     *         schema:
+     *           type: string
+     *     responses:
+     *       200:
+     *         description: Rental deleted successfully
+     *       404:
+     *         description: Rental not found
+     *       500:
+     *         description: Internal server error
+     */
     try {
       const id = Array.isArray(_req.params.id) ? _req.params.id[0] : _req.params.id;
       const deletedRental = await rentalService.deleteRental(id);
