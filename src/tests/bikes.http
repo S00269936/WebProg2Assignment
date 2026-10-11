@@ -9,19 +9,18 @@ POST {{endpoint}} HTTP/1.1
 content-type: application/json
 x-api-key: blahblah
 
-{ "bikeName": "to be deleted",
+{ 
+    "bikeName": "",
     "type": "Mountain",
-    "pricePerHour": 5,
-    "pricePerDay": 20,
+    "pricePerHour": 6,
+    "pricePerDay": 25,
     "available": true,
-    "description": "great jumping over small hills",
-    "colour": "black",
-    "brand": "green"
+    "description": "Mountain bike suitable for trails",
+    "colour": "Black",
+    "brand": "Merida"
 }
 
 ###
-
-@newBike = {{postABike.response.body._id}}
 
 ###
 GET  {{endpoint}} HTTP/3.0 
@@ -32,14 +31,14 @@ x-api-key: blahblah
 
 ### 
 
-GET {{endpoint}}/{{newBike}} HTTP/3.0
+GET {{endpoint}}/6ac7a236c6d616188b2 HTTP/3.0
 content-type: application/json
 x-api-key: blahblah
 ### 
 
  
 
-DELETE  {{endpoint}}/6ac8cc294e7343dfb56ac829 HTTP/3.0 
+DELETE  {{endpoint}}/6ac7a23d616188b2 HTTP/3.0 
 content-type: application/json
 x-api-key: blahblah
 
@@ -50,17 +49,17 @@ x-api-key: blahblah
  
 
 ###
-PUT {{endpoint}}/6ac8cc294e7343dfb56ac829 HTTP/1.1
+PUT {{endpoint}}/6ac8c94d4e7343dfb56ac828 HTTP/1.1
 Content-Type: application/json
 x-api-key: blahblah
 
 {
-    "bikeName": "Trek Marlin 8",
+    "bikeName": "",
     "type": "Mountain",
-    "pricePerHour": 5,
-    "pricePerDay": 20,
-    "available": true,
-    "description": "great jumping over small hills",
-    "colour": "black",
-    "brand": "Trek"
+    "pricePerHour": 8,
+    "pricePerDay": 30,
+    "available": false,
+    "description": "Mountain bike currently unavailable for rental",
+    "colour": "Red",
+    "brand": "Merida"
 }
