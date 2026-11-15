@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { UserService } from '../services/users';
-import { createUserZSchema } from '../models/user';
 
 const userService = new UserService();
 
@@ -86,17 +85,11 @@ export class UserController {
      *         description: Internal server error
      */
     try {
-      const validation = createUserZSchema.safeParse(req.body);
-      if (!validation.success) {
-        res.status(400).json({
-          message: 'Invalid user data',
-          errors: validation.error.issues
-        });
-        return;
-      }
-      const user = await userService.createUser({...validation.data, role: 'customer'
+      const user = await userService.createUser({
+        ...req.body,
+        role: 'staff'
       });
-      //creates a new user
+  
       res.status(201).json(user);
     } catch (error) {
       res.status(500).json({ message: 'Error creating user' });

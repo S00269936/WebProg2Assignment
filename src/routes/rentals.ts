@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { RentalController } from '../controllers/rentals';
 //import { authenticateKey } from '../middleware/auth.middleware';
 import {validate} from '../middleware/validate.middleware';
-import {createRentalZSchema}  from '../models/rentals';
+import {createRentalZSchema, updateRentalZSchema}  from '../models/rentals';
 
 const router = Router();  
 
@@ -14,7 +14,7 @@ router.get('/:id', rentalController.getRentalById);
 
 router.post('/', validate(createRentalZSchema), rentalController.createRental);
 
-router.put('/:id', rentalController.updateRental); 
+router.put('/:id', validate(updateRentalZSchema), rentalController.updateRental);
 
 router.delete('/:id', rentalController.deleteRental); 
 

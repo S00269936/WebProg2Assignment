@@ -3,6 +3,7 @@ import { BikeController } from '../controllers/bikes';
 //import { authenticateKey } from '../middleware/auth.middleware';
 import {validate} from '../middleware/validate.middleware';
 import {createBikeZSchema}  from '../models/bike';
+import {updateBikeZSchema} from '../models/bike';
 
 const router = Router();  
 
@@ -14,7 +15,7 @@ router.get('/:id', bikeController.getBikeById);
 
 router.post('/', validate(createBikeZSchema), bikeController.createBike);
 
-router.put('/:id', bikeController.updateBike); 
+router.put('/:id', validate(updateBikeZSchema), bikeController.updateBike);
 
 router.delete('/:id', bikeController.deleteBike); 
 

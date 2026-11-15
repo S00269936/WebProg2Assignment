@@ -87,14 +87,7 @@ export class RentalController {
      *         description: Internal server error
      */
     try {
-      const validation = createRentalZSchema.safeParse(req.body);
-      console.log;
-      if (!validation.success){
-        res.status(400).json({message: 'Invalid rental data', errors:
-          validation.error.issues
-        });
-        return;
-      }
+      
       const newRental = await rentalService.createRental(req.body);
       res.status(201).json(newRental);
     } catch (error) {
@@ -133,13 +126,7 @@ export class RentalController {
      *         description: Internal server error
      */
     try {
-      const validation = updateRentalZSchema.safeParse(req.body);
-      console.log;
-      if (!validation.success){
-        res.status(400).json({message: 'Invalid rental data', errors:
-          validation.error.issues
-        });
-      }
+      
       const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
       const updatedRental = await rentalService.updateRental(id, req.body);
       if (!updatedRental) {

@@ -1,5 +1,4 @@
 import express, {Application, Request, Response} from "express" ;
-import { env } from "../src/config/env";
 import { logRequest } from "./middleware/log.middleware";
 import bikeRoutes from "./routes/bikes";
 import { swaggerSpec } from "../src/config/swagger";
@@ -8,7 +7,6 @@ import rentalRoutes from './routes/rentals';
 import userRoutes from './routes/users';
 import cors from 'cors';
 
-const PORT = env.port;
 const app: Application = express();
 
 app.get("/ping", async (_req : Request, res: Response) => {

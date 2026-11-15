@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { BikeService } from '../services/bikes';
-import { createBikeZSchema, updateBikeZSchema } from '../models/bike';
 
 const bikeService = new BikeService();
 
@@ -88,14 +87,7 @@ export class BikeController {
        *         description: Internal server error
        */
     try {
-      const validation = createBikeZSchema.safeParse(req.body);
-      console.log;
-      if (!validation.success){
-        res.status(400).json({message: 'Invalid bike data', errors:
-          validation.error.issues
-        });
-        return;
-      }
+      
       const newBike = await bikeService.createBike(req.body);
       res.status(201).json(newBike);
     } catch (error) {
@@ -134,13 +126,7 @@ export class BikeController {
    *         description: Internal server error
    */
     try {
-      const validation = updateBikeZSchema.safeParse(req.body);
-      console.log;
-      if (!validation.success){
-        res.status(400).json({message: 'Invalid bike data', errors:
-          validation.error.issues
-        });
-      }
+      
       const id = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
       const updatedBike = await bikeService.updateBike(id, req.body);
       if (!updatedBike) {
