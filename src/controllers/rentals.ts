@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { RentalService } from '../services/rentals';
-import { createRentalZSchema, updateRentalZSchema } from '../models/rentals';
 
 const rentalService = new RentalService();
 

@@ -14,7 +14,7 @@ export class UserService {
 
   async createUser(userData: IUser): Promise<HydratedDocument<IUser>> {
     userData.password = await hash(userData.password, 12); //hashes password using bcryptjs
-    userData.role = 'customer'; //defaults to customer role
+    userData.role = userData.role ?? 'customer'; //defaults to customer role
 
     const user = new UserModel(userData);
     return await user.save();
