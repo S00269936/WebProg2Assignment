@@ -1,0 +1,92 @@
+import { Schema, model } from 'mongoose';
+import { z } from 'zod';
+
+export interface IBike{
+    bikeName: string;
+    type: string;
+    pricePerHour: number;
+    pricePerDay: number;
+    available: boolean;
+    description?: string;
+    image?: string;
+    colour?: string;
+    brand?: string;
+}
+
+const bikeSchema = new Schema<IBike>({
+    bikeName: { type: String, required: true },
+    type: { type: String, required: true },
+    pricePerHour: { type: Number },
+    pricePerDay: { type: Number },
+    available: { type: Boolean, default: true },
+    description: { type: String },
+    image: { type: String}, 
+    colour: { type: String },
+    brand: { type: String },
+},{ timestamps: true });
+
+export const createBikeZSchema = z.object({
+/**
+ * @openapi
+ * components:
+ *   schemas:
+ *     CreateBikeInput:
+ *       type: object
+ *       required:
+ *         - bikeName
+ *         - type
+ *       properties:
+ *         bikeName:
+ *           type: string
+ *           example: Stromer ST2
+ *         type:
+ *           type: string
+ *           example: Electric
+ *         pricePerHour:
+ *           type: number
+ *           minimum: 1
+ *           example: 12
+ *         pricePerDay:
+ *           type: number
+ *           minimum: 1
+ *           example: 50
+ *         available:
+ *           type: boolean
+ *           example: true
+ *         description:
+ *           type: string
+ *           example: Electric bike suitable for city travel
+ *         image:
+ *           type: string
+ *           example: image link here
+ *         colour:
+ *           type: string
+ *           example: Black
+ *         brand:
+ *           type: string
+ *           example: Stromer
+ */
+    bikeName: z.string().min(1),
+    type: z.string().min(1),
+    pricePerHour: z.number().min(1).optional(),
+    pricePerDay: z.number().min(1).optional(),
+    available: z.boolean().optional(),
+    description: z.string().optional(),
+    image: z.string().optional(),
+    colour: z.string().optional(),
+    brand: z.string().optional(),
+  })
+
+  export const updateBikeZSchema = z.object({
+    bikeName: z.string().min(1),
+    type: z.string().min(1),
+    pricePerHour: z.number().min(1).optional(),
+    pricePerDay: z.number().min(1).optional(),
+    available: z.boolean().optional(),
+    description: z.string().optional(),
+    image: z.string().optional(),
+    colour: z.string().optional(),
+    brand: z.string().optional(),
+})
+
+export const BikeModel = model<IBike>('Bike', bikeSchema);

@@ -1,0 +1,65 @@
+@endpoint = http://localhost:5050/api/v1/bikes
+
+ 
+
+###
+# @name postABike
+
+POST {{endpoint}} HTTP/1.1
+content-type: application/json
+x-api-key: blahblah
+
+{ 
+    "bikeName": "",
+    "type": "Mountain",
+    "pricePerHour": 6,
+    "pricePerDay": 25,
+    "available": true,
+    "description": "Mountain bike suitable for trails",
+    "colour": "Black",
+    "brand": "Merida"
+}
+
+###
+
+###
+GET  {{endpoint}} HTTP/3.0 
+content-type: application/json
+x-api-key: blahblah 
+
+ 
+
+### 
+
+GET {{endpoint}}/6acbc62e676cb90415ca HTTP/3.0
+content-type: application/json
+x-api-key: blahblah
+### 
+
+ 
+
+DELETE  {{endpoint}}/6acbc62e60410c505ca HTTP/3.0 
+content-type: application/json
+x-api-key: blahblah
+
+ 
+
+### 
+
+ 
+
+###
+PUT {{endpoint}}/6ac8c94d4e7343dfb56ac828 HTTP/1.1
+Content-Type: application/json
+x-api-key: blahblah
+
+{
+    "bikeName": "",
+    "type": "Mountain",
+    "pricePerHour": 8,
+    "pricePerDay": 30,
+    "available": false,
+    "description": "Mountain bike currently unavailable for rental",
+    "colour": "Red",
+    "brand": "Merida"
+}
